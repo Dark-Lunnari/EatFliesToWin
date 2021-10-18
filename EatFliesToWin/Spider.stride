@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="Spider" extends="Actor" extends-java="Actor" enable="true" strideversion="1">
+    <javadoc xml:space="preserve"/>
+    <imports>
+        <import target="java.util.*" enable="true"/>
+        <import target="greenfoot.*" enable="true"/>
+    </imports>
+    <implements/>
+    <fields>
+        <variable access="private" type="GreenfootImage" type-java="GreenfootImage" name="spider1" enable="true"/>
+        <variable access="private" type="GreenfootImage" type-java="GreenfootImage" name="spider2" enable="true"/>
+        <variable access="private" type="GreenfootImage" type-java="GreenfootImage" name="spider3" enable="true"/>
+        <variable access="private" type="GreenfootImage" type-java="GreenfootImage" name="spider4" enable="true"/>
+        <variable access="private" type="GreenfootImage" type-java="GreenfootImage" name="spider5" enable="true"/>
+        <variable access="private" type="GreenfootImage" type-java="GreenfootImage" name="spider6" enable="true"/>
+    </fields>
+    <constructors>
+        <constructor access="public" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <assign dest="spider1" dest-java="spider1" src="new GreenfootImage(&quot;spider1.png&quot;)" src-java=" new GreenfootImage(&quot;spider1.png&quot;)" enable="true"/>
+                <assign dest="spider2" dest-java="spider2" src="new GreenfootImage(&quot;spider2.png&quot;)" src-java=" new GreenfootImage(&quot;spider2.png&quot;)" enable="true"/>
+                <assign dest="spider3" dest-java="spider3" src="new GreenfootImage(&quot;spider3.png&quot;)" src-java=" new GreenfootImage(&quot;spider3.png&quot;)" enable="true"/>
+                <assign dest="spider4" dest-java="spider4" src="new GreenfootImage(&quot;spider4.png&quot;)" src-java=" new GreenfootImage(&quot;spider4.png&quot;)" enable="true"/>
+                <assign dest="spider5" dest-java="spider5" src="new GreenfootImage(&quot;spider5.png&quot;)" src-java=" new GreenfootImage(&quot;spider5.png&quot;)" enable="true"/>
+                <assign dest="spider6" dest-java="spider6" src="new GreenfootImage(&quot;spider6.png&quot;)" src-java=" new GreenfootImage(&quot;spider6.png&quot;)" enable="true"/>
+            </body>
+        </constructor>
+    </constructors>
+    <methods>
+        <method access="public" final="true" type="void" type-java="void" name="act" enable="true">
+            <javadoc xml:space="preserve">Act - do whatever the Spider wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <if condition="Greenfoot.isKeyDown(&quot;w&quot;)" condition-java="Greenfoot.isKeyDown(&quot;w&quot;)" enable="true">
+                    <ifStatements>
+                        <call expression="move(4)" expression-java="move(4)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot.isKeyDown(&quot;s&quot;)" condition-java="Greenfoot.isKeyDown(&quot;s&quot;)" enable="true">
+                    <ifStatements>
+                        <call expression="move(-3)" expression-java="move(-3)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot.isKeyDown(&quot;a&quot;)" condition-java="Greenfoot.isKeyDown(&quot;a&quot;)" enable="true">
+                    <ifStatements>
+                        <call expression="turn(-7)" expression-java="turn(-7)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot.isKeyDown(&quot;d&quot;)" condition-java="Greenfoot.isKeyDown(&quot;d&quot;)" enable="true">
+                    <ifStatements>
+                        <call expression="turn(7)" expression-java="turn(7)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <call expression="lookForFly()" expression-java="lookForFly()" enable="true"/>
+                <call expression="switchimage()" expression-java="switchimage()" enable="true"/>
+            </body>
+        </method>
+        <method access="public" type="void" type-java="void" name="switchimage" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <if condition="getImage()==spider1" condition-java="getImage() == spider1" enable="true">
+                    <ifStatements>
+                        <call expression="setImage(spider2)" expression-java="setImage(spider2)" enable="true"/>
+                    </ifStatements>
+                    <else>
+                        <if condition="getImage()==spider3" condition-java="getImage() == spider3" enable="true">
+                            <ifStatements>
+                                <call expression="setImage(spider4)" expression-java="setImage(spider4)" enable="true"/>
+                            </ifStatements>
+                            <else>
+                                <if condition="getImage()==spider5" condition-java="getImage() == spider5" enable="true">
+                                    <ifStatements>
+                                        <call expression="setImage(spider6)" expression-java="setImage(spider6)" enable="true"/>
+                                    </ifStatements>
+                                    <else>
+                                        <call expression="setImage(spider1)" expression-java="setImage(spider1)" enable="true"/>
+                                    </else>
+                                </if>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </body>
+        </method>
+        <method access="public" type="void" type-java="void" name="lookForFly" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <if condition="isTouching(Fly.class)" condition-java="isTouching(Fly.class)" enable="true">
+                    <ifStatements>
+                        <call expression="removeTouching(Fly.class)" expression-java="removeTouching(Fly.class)" enable="true"/>
+                        <call expression="Greenfoot.playSound(&quot;Crunch.mp3&quot;)" expression-java="Greenfoot.playSound(&quot;Crunch.mp3&quot;)" enable="true"/>
+                        <variable type="World" type-java="World" name="myWorld" value="getWorld()" value-java="getWorld()" enable="true"/>
+                        <variable type="MyWorld" type-java="MyWorld" name="space" value="(MyWorld)myWorld" value-java="(MyWorld)myWorld" enable="true"/>
+                        <variable type="Score" type-java="Score" name="counter" value="space.getCounter()" value-java="space.getCounter()" enable="true"/>
+                        <call expression="counter.addScore()" expression-java="counter.addScore()" enable="true"/>
+                        <if condition="getWorld().getObjects(Fly.class).isEmpty()" condition-java="getWorld().getObjects(Fly.class).isEmpty()" enable="true">
+                            <ifStatements>
+                                <variable type="YouWin" type-java="YouWin" name="youwin" value="new YouWin()" value-java=" new YouWin()" enable="true"/>
+                                <call expression="myWorld.addObject(youwin,myWorld.getWidth()/2,myWorld.getHeight()/2)" expression-java="myWorld.addObject(youwin, myWorld.getWidth() / 2, myWorld.getHeight() / 2)" enable="true"/>
+                                <call expression="Greenfoot.stop()" expression-java="Greenfoot.stop()" enable="true"/>
+                            </ifStatements>
+                        </if>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+    </methods>
+</class>
